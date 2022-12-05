@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_templates/templates/voice_chat/components/voice_chat_user_avatar.dart';
 
@@ -14,6 +13,41 @@ class VoiceChatPage extends StatefulWidget {
 class VoiceChatPageState extends State<VoiceChatPage> {
   Timer? _refreshTimer;
   final _micNotifier = ValueNotifier<bool>(true);
+  var names = [
+    for (int i = 0; i < 10; i++) ...[
+      'Amber',
+      'Ariana',
+      'John',
+      'Morgan',
+      'Gloria',
+      'Andy',
+      'Mary',
+      'George',
+      'Emma',
+      'Fredrick',
+      'Chris',
+      'Christopher',
+      'Rick',
+      'Morty',
+      'Jonathan',
+      'Liam',
+      'Noah',
+      'Amelia',
+      'Isabella',
+      'Henry',
+      'Theodore',
+      'Liam',
+      'Elijah',
+      'Henry',
+      'Theodore',
+      'Lucas',
+      'Henry',
+      'Elijah',
+      'Eliam',
+      'Onyx',
+      'Koen',
+    ],
+  ];
 
   @override
   void initState() {
@@ -45,16 +79,17 @@ class VoiceChatPageState extends State<VoiceChatPage> {
         itemCount: 30,
         itemBuilder: (context, index) {
           final isSpeaking = Random().nextBool();
+          final imageAddress = 'assets/user_images/$index.jfif';
           return VoiceChatUserAvatar(
-            key: Key('assets/user_images/$index.jfif'),
-            imageProvider: AssetImage('assets/user_images/$index.jfif'),
+            key: Key(imageAddress),
+            name: names[index],
+            imageProvider: AssetImage(imageAddress),
             isSpeaking: isSpeaking,
             isMuted: isSpeaking ? false : Random().nextBool(),
           );
         },
         gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-          maxCrossAxisExtent: 110,
-          mainAxisExtent: 100,
+          maxCrossAxisExtent: 120,
           crossAxisSpacing: 15,
           mainAxisSpacing: 15,
           childAspectRatio: 1,
